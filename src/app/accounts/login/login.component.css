@@ -1,0 +1,43 @@
+input {
+  border-radius: 5px;
+  padding: 0px 10px 0px 10px;
+  height: 50px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+}
+
+input:active:hover {
+  border-color: #a991d4;
+}
+
+button {
+  border-radius: 5px;
+  font-weight: bold;
+  width: 150px;
+  height: 7vh;
+}
+
+fa-google-hover:hover i.fa {
+  color: white;
+}
+
+#btn-p {
+  font-weight: 800;
+}
+
+button:hover {
+  color: whitesmoke;
+}
+
+div.card {
+  border-radius: 15px;
+  padding-top: 0;
+}
+
+#cardHeader {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding-bottom: 10px;
+}

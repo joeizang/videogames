@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "vgames-db06e": {
+      "hosting": {
+        "testangularapp": [
+          "vgames-db06e"
+        ]
+      }
+    }
+  }
+}
