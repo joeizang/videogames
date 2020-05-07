@@ -1,20 +1,5 @@
-input {
-  border-radius: 5px;
-  padding: 0px 10px 0px 10px;
-  height: 50px;
-  font-size: 16px;
-  border: 2px solid #ccc;
-}
-
-input:active:hover {
-  border-color: #a991d4;
-}
-
 button {
-  border-radius: 5px;
-  font-weight: bold;
-  width: 150px;
-  height: 7vh;
+  background-color: #e05449;
 }
 
 fa-google-hover:hover i.fa {

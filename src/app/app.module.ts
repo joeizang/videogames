@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -34,6 +35,7 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons';
       measurementId: 'G-VJSZLJ9V76',
     }),
     AngularFireAuthModule,
+    AngularFirestoreModule,
     AngularFireStorageModule,
     BrowserModule,
     AppRoutingModule,

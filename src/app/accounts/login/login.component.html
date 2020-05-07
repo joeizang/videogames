@@ -5,20 +5,18 @@
       Video Game Login
     </h2>
     <div class="card-body">
-      <form id="login-form">
-        <div class="form-group d-flex flex-row">
-          <button type="submit" class="btn btn-outline-secondary">
-            <fa-icon
-              [icon]="faGoogle"
-              size="3x"
-              [classes]="['fa-google-hover']"
-            ></fa-icon>
-          </button>
-          <p class="text-wrap pl-3" id="btn-p">
-            Click here to either sign-in or sign-up with your google account.
-          </p>
-        </div>
-      </form>
+      <div class="form-group d-flex flex-row">
+        <button type="button" class="btn" (click)="userSignIn()">
+          <fa-icon
+            [icon]="faGoogle"
+            size="3x"
+            [classes]="['fa-google-hover']"
+          ></fa-icon>
+        </button>
+        <p class="text-wrap pl-3" id="btn-p">
+          Click here to either sign-in or sign-up with your google account.
+        </p>
+      </div>
     </div>
   </div>
   <div class="col"></div>

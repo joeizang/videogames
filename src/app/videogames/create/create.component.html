@@ -1,1 +1,55 @@
-<p>create works!</p>
+<div class="row">
+  <div class="col"></div>
+  <div class="col-md-8">
+    <form [formGroup]="createGroup" (ngSubmit)="createVideoGame()">
+      <div class="form-group">
+        <div class="col-md-12">
+          <input
+            type="text"
+            required
+            class="form-control vginput"
+            placeholder="Video game title..."
+            formControlName="title"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-12">
+          <input
+            type="textarea"
+            class="form-control rounded vginput"
+            placeholder="Brief description of the game"
+            formControlName="description"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-12">
+          <input
+            type="file"
+            required
+            class="form-control vginput custom-file-input"
+            placeholder="Upload Video game Image..."
+            formControlName="imagePath"
+          />
+          <label
+            for=""
+            class="custom-file-label rounded"
+            style="
+              height: 45px;
+              border-radius: 5px;
+              border: 2px solid #ccc;
+              font-size: 16px;
+              color: #8a96a2;
+            "
+            >Pick game Image to upload</label
+          >
+        </div>
+      </div>
+      <div class="col-md-8">
+        <button class="btn btn-primary rounded vgbutton">Create</button>
+      </div>
+    </form>
+  </div>
+  <div class="col"></div>
+</div>

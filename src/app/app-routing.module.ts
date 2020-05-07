@@ -6,28 +6,29 @@ import { EditComponent } from './videogames/edit/edit.component';
 import { DeleteComponent } from './videogames/delete/delete.component';
 import { SignupComponent } from './accounts/signup/signup.component';
 import { LoginComponent } from './accounts/login/login.component';
+import { AuthGuardGuard } from './services/auth-guard.guard';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: '/video-games/list',
     pathMatch: 'full',
+    canActivate: [AuthGuardGuard],
   },
   {
     path: 'video-games/create',
     component: CreateComponent,
+    //canActivate: [AuthGuardGuard],
   },
   {
     path: 'video-games/edit/:id',
     component: EditComponent,
+    canActivate: [AuthGuardGuard],
   },
   {
     path: 'video-games/delete/:id',
     component: DeleteComponent,
-  },
-  {
-    path: 'accounts/signup',
-    component: SignupComponent,
+    canActivate: [AuthGuardGuard],
   },
   {
     path: 'accounts/login',
