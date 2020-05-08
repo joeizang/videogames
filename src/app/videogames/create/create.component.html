@@ -13,10 +13,12 @@
           />
         </div>
       </div>
+
       <div class="form-group">
         <div class="col-md-12">
           <input
             type="textarea"
+            rows="3"
             class="form-control rounded vginput"
             placeholder="Brief description of the game"
             formControlName="description"
@@ -26,11 +28,12 @@
       <div class="form-group">
         <div class="col-md-12">
           <input
+            name="imageUpload"
             type="file"
             required
             class="form-control vginput custom-file-input"
             placeholder="Upload Video game Image..."
-            formControlName="imagePath"
+            (change)="prepFile($event)"
           />
           <label
             for=""
@@ -46,8 +49,15 @@
           >
         </div>
       </div>
+
       <div class="col-md-8">
-        <button class="btn btn-primary rounded vgbutton">Create</button>
+        <button
+          type="submit"
+          [disabled]="!createGroup.valid"
+          class="btn btn-primary rounded vgbutton"
+        >
+          Create
+        </button>
       </div>
     </form>
   </div>
