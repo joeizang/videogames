@@ -4,20 +4,24 @@ import { ListComponent } from './videogames/list/list.component';
 import { CreateComponent } from './videogames/create/create.component';
 import { EditComponent } from './videogames/edit/edit.component';
 import { DeleteComponent } from './videogames/delete/delete.component';
-import { SignupComponent } from './accounts/signup/signup.component';
 import { LoginComponent } from './accounts/login/login.component';
 import { AuthGuardGuard } from './services/auth-guard.guard';
 
 const routes: Routes = [
   {
-    path: '/',
-    redirectTo: '/video-games/list',
+    path: '',
+    redirectTo: 'video-games/list',
     pathMatch: 'full',
-    canActivate: [AuthGuardGuard],
+    //canActivate: [AuthGuardGuard],
   },
   {
     path: 'video-games/create',
     component: CreateComponent,
+    //canActivate: [AuthGuardGuard],
+  },
+  {
+    path: 'video-games/list',
+    component: ListComponent,
     //canActivate: [AuthGuardGuard],
   },
   {
