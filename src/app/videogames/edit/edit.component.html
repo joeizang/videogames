@@ -2,18 +2,20 @@
   <form [formGroup]="editGroup" (ngSubmit)="updateGame()">
     <div class="form-group">
       <div class="col-md-8">
-        <input type="text" class="form-control" formGroupControl="" />
+        <input type="text" class="form-control" formGroupControl="title" />
       </div>
     </div>
     <div class="form-group">
       <div class="col-md-8">
-        <input type="text" class="form-control" formGroupControl="" />
+        <input
+          type="text"
+          class="form-control"
+          formGroupControl="description"
+        />
       </div>
     </div>
     <div class="form-group">
-      <div class="col-md-8">
-        <input type="text" class="form-control" formGroupControl="" />
-      </div>
+      <button class="btn btn-primary">Update</button>
     </div>
   </form>
 </div>

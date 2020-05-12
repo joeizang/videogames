@@ -13,7 +13,7 @@ import { AngularFirestoreCollection } from '@angular/fire/firestore/public_api';
 export class EditComponent implements OnInit {
   editGroup: FormGroup;
   db: AngularFirestoreCollection;
-  oneId;
+  oneId: string;
   constructor(
     private activeRoute: ActivatedRoute,
     private route: Router,
@@ -24,7 +24,21 @@ export class EditComponent implements OnInit {
     this.oneId = this.activeRoute.snapshot.paramMap.get('gameId');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.editGroup = this.editBuilder.group({
+      title: [''],
+      description: [''],
+      imagePath: [''],
+    });
+  }
 
-  updateGame() {}
+  updateGame() {
+    try {
+      this.db.doc(this.oneId).set(this.editGroup.value, { merge: true });
+      this.editGroup.reset();
+      this.route.navigate(['video-games/list']);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
