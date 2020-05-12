@@ -11,6 +11,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { AngularFirestoreCollection } from '@angular/fire/firestore/collection/collection';
+import { VideoGame, Videogame } from '../../services/videogame';
 
 @Component({
   selector: 'app-create',
@@ -21,7 +22,9 @@ export class CreateComponent implements OnInit {
   createGroup: FormGroup;
   file: any;
   imageUrl: Observable<any>;
+  downloadUrl;
   collection: AngularFirestoreCollection<unknown>;
+  videoGame: VideoGame;
 
   constructor(
     private createBuilder: FormBuilder,
@@ -41,30 +44,31 @@ export class CreateComponent implements OnInit {
   async prepFile(event) {
     const [file] = event.target.files;
     this.file = file;
-    console.log(file);
+    try {
+      await this.uploadFile(this.file);
+    } catch (error) {
+      console.log(
+        `You have errors in the prepFile Method here it is: ${error}`
+      );
+    }
   }
 
   async createVideoGame() {
+    const thisdata = { ...this.createGroup.value };
+    console.dir(thisdata);
     try {
-      await this.uploadFile(this.file);
-      const data = this.createGroup.value;
-      console.log(`Echo data!${data}`);
-      data.imagePath = this.imageUrl.subscribe();
-      console.log(
-        `${this.imageUrl} url from fireStorage should here unless its not!!:-(`
-      );
-      this.persistVideoGame(data);
+      thisdata.imagePath = this.downloadUrl;
+      await this.persistVideoGame(thisdata);
       this.createGroup.reset();
     } catch (error) {
-      console.log(
-        `You have errors in the createVideoGame Method here it is: ${error}`
-      );
+      console.log(`Exceptions from the actual persisting: ${error}`);
     }
   }
 
   async persistVideoGame(data) {
     this.collection = this.db.collection('videogames');
-    const result = await this.collection.add(data);
+    data.gameId = this.db.createId();
+    await this.collection.add(data);
     this.router.navigate(['']);
   }
 
@@ -77,11 +81,25 @@ export class CreateComponent implements OnInit {
     const fRref = this.storage.ref(fpath); // reference to storage bucket
     const uploadTask = this.storage.upload(fpath, file).snapshotChanges();
 
-    uploadTask.pipe(
-      finalize(() => {
-        console.log(`Just entered the finalize method in pipe!`);
-        this.imageUrl = fRref.getDownloadURL();
-      })
-    );
+    uploadTask
+      .pipe(
+        finalize(() => {
+          console.log(`Just entered the finalize method in pipe!`);
+          this.imageUrl = fRref.getDownloadURL();
+          this.imageUrl.subscribe((url) => {
+            if (url) {
+              this.downloadUrl = url;
+            }
+            console.log(
+              `The download Url for this uploaded file is: ${this.downloadUrl}`
+            );
+          });
+        })
+      )
+      .subscribe((anodaUrl) => {
+        if (anodaUrl) {
+          console.log(anodaUrl);
+        }
+      });
   }
 }

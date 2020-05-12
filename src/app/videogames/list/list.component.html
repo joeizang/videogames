@@ -1,15 +1,31 @@
 <div class="row">
   <div class="row"></div>
-  <div class="row shadow mb-5 bg-white align-self-center">
-    <div class="card" style="width: 18rem;">
-      <img src="..." class="card-img-top" alt="..." />
+  <div class="row card-deck">
+    <!-- Write ngfor to loop over all uploaded files here-->
+    <div
+      class="card shadow mb-5 bg-white align-self-center"
+      style="width: 18rem; border-radius: 5px;"
+      *ngFor="let game of gameList | async"
+    >
+      <img
+        src="{{ game.ImagePath }}"
+        class="card-img-top"
+        alt="{{ game.title }}"
+      />
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
+        <h3 class="card-title">{{ game.title }}</h3>
         <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          {{ game.description }}
+          {{ game.ImagePath }}
         </p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div>
+          <a class="btn btn-primary col-md-5 mr-3" aria-disabled="true"
+            >Released
+          </a>
+          <a routerLink="/video-games/edit" class="btn btn-primary col-md-5"
+            >Edit Game
+          </a>
+        </div>
       </div>
     </div>
   </div>

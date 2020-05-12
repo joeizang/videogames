@@ -19,6 +19,7 @@ import {
   FaIconLibrary,
 } from '@fortawesome/angular-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [AppComponent, HeaderNavbarComponent, FooterComponent],
@@ -45,6 +46,7 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons';
     NgbModule,
     ReactiveFormsModule,
     VideogamesModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

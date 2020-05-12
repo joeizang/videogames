@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { auth } from 'firebase/app';
+import { auth, User } from 'firebase/app';
 import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, first, tap } from 'rxjs/operators';
 import { AppUser } from './user';
 import {
   AngularFirestore,
@@ -15,6 +15,7 @@ import {
 })
 export class AuthServiceService {
   user$: Observable<AppUser>;
+  loggedInUser: User;
 
   constructor(
     private fireAuth: AngularFireAuth,
@@ -55,8 +56,23 @@ export class AuthServiceService {
     referencedUser.set(userData, { merge: true });
   }
 
-  async userSignOut(): Promise<boolean> {
+  private getFirst() {
+    return this.fireAuth.authState.pipe(first());
+  }
+
+  checkUserSignInStatus(): boolean {
+    this.getFirst().pipe(
+      tap((firstUser) => {
+        if (firstUser) {
+          this.loggedInUser = firstUser;
+          return true;
+        }
+      })
+    );
+    return false;
+  }
+
+  async userSignOut(): Promise<void> {
     await this.fireAuth.signOut();
-    return this.router.navigate(['/']);
   }
 }

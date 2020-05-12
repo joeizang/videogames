@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,17 +9,19 @@ import { AuthServiceService } from 'src/app/services/auth-service.service';
 })
 export class LoginComponent implements OnInit {
   faGoogle = faGoogle;
-  constructor(private authSrv: AuthServiceService) {}
+
+  constructor(private authSrv: AuthServiceService, private router: Router) {}
 
   ngOnInit(): void {
     console.log(this.authSrv);
   }
 
   async userSignIn() {
-    await this.authSrv.userSignIn();
-  }
-
-  userSignOut(): void {
-    this.authSrv.userSignOut();
+    try {
+      await this.authSrv.userSignIn();
+      this.router.navigate(['video-games/list']);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

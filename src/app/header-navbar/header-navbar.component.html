@@ -14,10 +14,40 @@
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="#"
-          >Home <span class="sr-only">(current)</span></a
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/video-game/list"
+          routerLinkActive="active"
         >
+          Home
+          <span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/video-games/create"
+          routerLinkActive="active"
+        >
+          Video Games <span class="sr-only"></span>
+        </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-md-auto mt-2 mt-lg-0">
+      <li class="nav-item mr-5">
+        <span>
+          <mat-icon class="icon-color">
+            settings
+          </mat-icon>
+        </span>
+      </li>
+      <li class="nav-item">
+        <span (click)="userSignOut()">
+          <mat-icon class="icon-color">
+            account_circle
+          </mat-icon>
+        </span>
       </li>
     </ul>
   </div>

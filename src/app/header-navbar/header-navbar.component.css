@@ -1,3 +1,12 @@
 nav {
   background-color: #593196;
 }
+
+fa-user-hover:hover i.fa {
+  color: white !important;
+}
+
+.icon-color {
+  color: white !important;
+  font-size: 2.3rem;
+}

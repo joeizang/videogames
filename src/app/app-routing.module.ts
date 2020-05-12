@@ -10,19 +10,18 @@ import { AuthGuardGuard } from './services/auth-guard.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'video-games/list',
+    redirectTo: 'accounts/login',
     pathMatch: 'full',
-    //canActivate: [AuthGuardGuard],
   },
   {
     path: 'video-games/create',
     component: CreateComponent,
-    //canActivate: [AuthGuardGuard],
+    canActivate: [AuthGuardGuard],
   },
   {
     path: 'video-games/list',
     component: ListComponent,
-    //canActivate: [AuthGuardGuard],
+    canActivate: [AuthGuardGuard],
   },
   {
     path: 'video-games/edit/:id',

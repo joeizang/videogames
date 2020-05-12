@@ -1,15 +1,30 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Videogame } from 'src/app/services/videogame';
+import { AngularFirestoreCollection } from '@angular/fire/firestore/public_api';
 
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.css']
+  styleUrls: ['./edit.component.css'],
 })
 export class EditComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  editGroup: FormGroup;
+  db: AngularFirestoreCollection;
+  oneId;
+  constructor(
+    private activeRoute: ActivatedRoute,
+    private route: Router,
+    private editBuilder: FormBuilder,
+    private store: AngularFirestore
+  ) {
+    this.db = this.store.collection<Videogame>('videogames');
+    this.oneId = this.activeRoute.snapshot.paramMap.get('gameId');
   }
 
+  ngOnInit(): void {}
+
+  updateGame() {}
 }
